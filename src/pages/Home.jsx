@@ -65,7 +65,7 @@ const Home = () => {
             <input onChange={(e) => setUser({ ...User, zipCode: e.target.value })} id="zip-code" type="number" />
           </fieldset>
 
-          <Select title="Departement" type={departement} setUser={setUser} User={User} />
+          <Select title="Department" type={departement} setUser={setUser} User={User} />
         </form>
 
         <button

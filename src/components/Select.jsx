@@ -3,7 +3,7 @@ import React from "react";
 const Select = ({ title, type, setUser, User }) => {
   const onChange = (e) => {
     if (title === "States") setUser({ ...User, state: e.target.value });
-    if (title === "Departement") setUser({ ...User, department: e.target.value });
+    if (title === "Department") setUser({ ...User, department: e.target.value });
   };
 
   return (
