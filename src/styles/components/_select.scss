@@ -1,0 +1,13 @@
+select {
+  background-color: $color-2;
+  width: 258px;
+  height: 35px;
+  font-size: 16px;
+  padding: 0 15px 0 15px;
+  border-radius: 3px;
+  border: 1px solid $color-4;
+  cursor: pointer;
+  option {
+    background-color: $color-3;
+  }
+}

@@ -1,13 +1,36 @@
-import React, { useEffect, useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../DataContext";
+import { NavLink } from "react-router-dom";
+import Select from "../components/Select";
+import Modal from "../components/Modal";
+import { states, departement } from "../assets/SelectContent";
 const Home = () => {
   const data = useContext(DataContext);
-  const { User, setUser } = data;
+  const { UserList, setUserList } = data;
+
+  const [User, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    dateOfBirth: "",
+    startDate: "",
+    department: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+  });
+
+  const [ModalShowed, setModalShowed] = useState(false);
+
+  const onClick = () => {
+    setUserList(UserList.concat(User));
+    setModalShowed(true);
+  };
 
   console.log(User);
   return (
     <div className="home">
+      {ModalShowed ? <Modal setModalShowed={setModalShowed} /> : ""}
       <div className="title">
         <h1>HRnet</h1>
       </div>
@@ -36,24 +59,21 @@ const Home = () => {
             <label hmtlfor="city">City</label>
             <input onChange={(e) => setUser({ ...User, city: e.target.value })} id="city" type="text" />
 
-            <label hmtlfor="state">State</label>
-            <select onChange={(e) => setUser({ ...User, state: e.target.value })} name="state" id="state"></select>
+            <Select title="States" type={states} setUser={setUser} User={User} />
 
             <label hmtlfor="zip-code">Zip Code</label>
             <input onChange={(e) => setUser({ ...User, zipCode: e.target.value })} id="zip-code" type="number" />
           </fieldset>
 
-          <label hmtlfor="department">Department</label>
-          <select onChange={(e) => setUser({ ...User, department: e.target.value })} name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select>
+          <Select title="Departement" type={departement} setUser={setUser} User={User} />
         </form>
 
-        <button>Save</button>
+        <button
+          onClick={() => {
+            onClick();
+          }}>
+          Save
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,40 @@
+.modal-container {
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .modal {
+    border-radius: 8px;
+    background-color: $color-3;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    width: 500px;
+    height: 48px;
+    display: flex;
+    position: relative;
+    h2 {
+      padding-left: 28px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    button {
+      font-size: 17px;
+      position: absolute;
+      top: -13px;
+      right: -13px;
+      color: $color-3;
+      height: 31px;
+      width: 31px;
+      border-radius: 50%;
+      background-color: $color-5;
+    }
+  }
+}
