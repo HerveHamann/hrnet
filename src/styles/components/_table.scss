@@ -1,0 +1,30 @@
+table {
+  border-collapse: collapse;
+  width: 982px;
+  tbody {
+    border-bottom: 1px solid $color-8;
+
+    .column-title {
+      th {
+        border-bottom: 1px solid $color-8;
+        padding: 10px 18px;
+      }
+    }
+    .column {
+      height: 36px;
+      td {
+        border-top: 1px solid $color-4;
+        padding-left: 12px;
+      }
+    }
+    .column:hover {
+      background-color: $color-9;
+    }
+    .column-pair {
+      background-color: $color-7;
+    }
+    .column-impair {
+      background-color: $color-3;
+    }
+  }
+}

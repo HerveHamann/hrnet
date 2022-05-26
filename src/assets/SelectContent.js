@@ -244,3 +244,5 @@ export const departement = [
   { name: "Human Resources" },
   { name: "Legal" },
 ];
+
+export const entries = [{ name: 10 }, { name: 25 }, { name: 50 }, { name: 100 }];

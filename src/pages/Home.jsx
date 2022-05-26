@@ -1,12 +1,16 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { DataContext } from "../DataContext";
 import { NavLink } from "react-router-dom";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import { states, departement } from "../assets/SelectContent";
+
 const Home = () => {
   const data = useContext(DataContext);
   const { UserList, setUserList } = data;
+  const [selectedState, setSelectedState] = useState(states[0].name);
+  const [selectedDepartment, setSelectedDepartment] = useState(departement[0].name);
+  const [ModalShowed, setModalShowed] = useState(false);
 
   const [User, setUser] = useState({
     firstName: "",
@@ -19,15 +23,30 @@ const Home = () => {
     state: "",
     zipCode: "",
   });
+  console.log(selectedState);
+  console.log(selectedDepartment);
+  console.log(User);
 
-  const [ModalShowed, setModalShowed] = useState(false);
+  useEffect(() => {
+    if (User.state !== selectedState) {
+      setUser((User) => ({ ...User, state: states.find((item) => item.name === selectedState) }));
+    }
+    if (User.department !== selectedDepartment) {
+      setUser((User) => ({ ...User, department: departement.find((item) => item.name === selectedDepartment) }));
+    }
+  }, [User.state, User.department, selectedState, selectedDepartment]);
 
+  // setUser({
+  //   ...User,
+  //   state: states.find((item) => item.name === selectedState),
+  //   department: departement.find((item) => item.name === selectedDepartment),
+  // });
+  // eslint-disable-line react-hooks/exhaustive-deps
   const onClick = () => {
     setUserList(UserList.concat(User));
     setModalShowed(true);
   };
 
-  console.log(User);
   return (
     <div className="home">
       {ModalShowed ? <Modal setModalShowed={setModalShowed} /> : ""}
@@ -59,13 +78,18 @@ const Home = () => {
             <label hmtlfor="city">City</label>
             <input onChange={(e) => setUser({ ...User, city: e.target.value })} id="city" type="text" />
 
-            <Select title="States" type={states} setUser={setUser} User={User} />
+            <Select selectedItem={selectedState} title="State" type={states} setSelected={setSelectedState} />
 
             <label hmtlfor="zip-code">Zip Code</label>
             <input onChange={(e) => setUser({ ...User, zipCode: e.target.value })} id="zip-code" type="number" />
           </fieldset>
 
-          <Select title="Department" type={departement} setUser={setUser} User={User} />
+          <Select
+            selectedItem={selectedDepartment}
+            title="Department"
+            type={departement}
+            setSelected={setSelectedDepartment}
+          />
         </form>
 
         <button

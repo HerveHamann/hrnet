@@ -3,14 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  label {
-    display: block;
-    margin-top: 1rem;
-    margin-bottom: 10px;
-  }
-
-  .address {
-    margin-top: 10px;
+  .custom-field {
+    .entries-selector {
+      display: flex;
+      align-items: center;
+    }
   }
 }
