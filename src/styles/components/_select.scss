@@ -12,7 +12,6 @@
   cursor: pointer;
   margin-right: 1px;
   position: relative;
-  cursor: pointer;
 
   .dropdown-select {
     padding: 0 15px 0 16px;
@@ -33,7 +32,7 @@
     display: none;
   }
   .dropdown-list {
-    width: 256px;
+    width: 100%;
     background-color: $color-3;
     position: absolute;
     top: 33px;
@@ -46,6 +45,55 @@
 
     .dropdown-item {
       padding: 3px 0px 3px 6.8px;
+    }
+    .dropdown-item:hover {
+      background-color: $color-1;
+      color: $color-3;
+    }
+  }
+}
+
+.table-dropdown {
+  margin: 0 4px 0 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 47px;
+  height: 17px;
+  background-color: $color-3;
+  border-radius: 3px;
+  border: 1px solid $color-6;
+  position: relative;
+  cursor: pointer;
+
+  .dropdown-select {
+    padding: 0 0px 0 4px;
+    font-size: 14px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .icon {
+      font-size: 10px;
+      color: $color-8;
+      position: relative;
+      top: -0.5px;
+      right: 5px;
+    }
+  }
+  .hidden {
+    display: none;
+  }
+  .dropdown-list {
+    width: 102%;
+    background-color: $color-3;
+    position: absolute;
+    top: 19px;
+    left: -1px;
+    z-index: 100;
+    border: 0.5px solid $color-5;
+    box-shadow: 0px 2px 5px $color-4;
+    .dropdown-item {
+      font-size: 14px;
+      padding: 0px 0px 0px 4px;
     }
     .dropdown-item:hover {
       background-color: $color-1;

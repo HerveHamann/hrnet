@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../DataContext";
 import { NavLink } from "react-router-dom";
 import Table from "../components/Table";
@@ -7,6 +7,9 @@ import { entries } from "../assets/SelectContent";
 const EmployeList = () => {
   const data = useContext(DataContext);
   const { UserList } = data;
+  const [selectedItemByPage, setSelectedItemByPage] = useState(entries[0].name);
+
+  console.log(selectedItemByPage);
 
   return (
     <div className="container">
@@ -14,7 +17,12 @@ const EmployeList = () => {
       <div className="custom-field">
         <div className="entries-selector">
           <span>Show</span>
-          <Select type={entries} />
+          <Select
+            classSet={"table-dropdown"}
+            type={entries}
+            selectedItem={selectedItemByPage}
+            setSelected={setSelectedItemByPage}
+          />
 
           <span>entries</span>
         </div>

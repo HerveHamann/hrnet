@@ -78,13 +78,20 @@ const Home = () => {
             <label hmtlfor="city">City</label>
             <input onChange={(e) => setUser({ ...User, city: e.target.value })} id="city" type="text" />
 
-            <Select selectedItem={selectedState} title="State" type={states} setSelected={setSelectedState} />
+            <Select
+              classSet={"dropdown"}
+              selectedItem={selectedState}
+              title="State"
+              type={states}
+              setSelected={setSelectedState}
+            />
 
             <label hmtlfor="zip-code">Zip Code</label>
             <input onChange={(e) => setUser({ ...User, zipCode: e.target.value })} id="zip-code" type="number" />
           </fieldset>
 
           <Select
+            classSet={"dropdown"}
             selectedItem={selectedDepartment}
             title="Department"
             type={departement}
