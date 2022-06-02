@@ -36,12 +36,6 @@ const Home = () => {
     }
   }, [User.state, User.department, selectedState, selectedDepartment]);
 
-  // setUser({
-  //   ...User,
-  //   state: states.find((item) => item.name === selectedState),
-  //   department: departement.find((item) => item.name === selectedDepartment),
-  // });
-  // eslint-disable-line react-hooks/exhaustive-deps
   const onClick = () => {
     setUserList(UserList.concat(User));
     setModalShowed(true);

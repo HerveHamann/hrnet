@@ -14,8 +14,8 @@ const Select = ({ classSet, title, type, setSelected, selectedItem }) => {
   };
   document.addEventListener("mousedown", handleCLickOutside);
 
-  const SaveSelection = (e) => {
-    setSelected(e.target.innerText);
+  const SaveSelection = (item) => {
+    setSelected(item.name);
   };
 
   return (
@@ -31,7 +31,7 @@ const Select = ({ classSet, title, type, setSelected, selectedItem }) => {
         </div>
         <div className={openDropDown ? "dropdown-list" : "hidden"}>
           {type.map((item) => (
-            <div className="dropdown-item" onClick={(e) => SaveSelection(e)} key={item.name}>
+            <div className="dropdown-item" onClick={() => SaveSelection(item)} key={item.name}>
               {item.name}
             </div>
           ))}

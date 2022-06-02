@@ -3,8 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .custom-field {
     .entries-selector {
+      margin: 0px 0 2px 0;
       display: flex;
       align-items: baseline;
     }

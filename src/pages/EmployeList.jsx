@@ -4,13 +4,13 @@ import { NavLink } from "react-router-dom";
 import Table from "../components/Table";
 import Select from "../components/Select";
 import { entries } from "../assets/SelectContent";
+import Pagination from "../components/Pagination";
 const EmployeList = () => {
   const data = useContext(DataContext);
   const { UserList } = data;
   const [selectedItemByPage, setSelectedItemByPage] = useState(entries[0].name);
-
-  console.log(selectedItemByPage);
-
+  const [ItemShowed, setItemShowed] = useState([]);
+  console.log(ItemShowed);
   return (
     <div className="container">
       <h1>Current Employees</h1>
@@ -23,11 +23,11 @@ const EmployeList = () => {
             selectedItem={selectedItemByPage}
             setSelected={setSelectedItemByPage}
           />
-
           <span>entries</span>
         </div>
+        <Table Userlist={UserList} ItemShowed={ItemShowed} />
+        <Pagination selectedItemByPage={selectedItemByPage} Userlist={UserList} setItemShowed={setItemShowed} />
       </div>
-      <Table Userlist={UserList} />
 
       <NavLink to={"/"}>Home</NavLink>
     </div>
