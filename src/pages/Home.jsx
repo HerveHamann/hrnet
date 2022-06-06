@@ -23,9 +23,9 @@ const Home = () => {
     state: "",
     zipCode: "",
   });
-  console.log(selectedState);
-  console.log(selectedDepartment);
-  console.log(User);
+  // console.log(selectedState);
+  // console.log(selectedDepartment);
+  // console.log(User);
 
   useEffect(() => {
     if (User.state !== selectedState) {

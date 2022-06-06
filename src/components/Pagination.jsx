@@ -84,9 +84,21 @@ const Pagination = ({ selectedItemByPage, Userlist, setItemShowed, userListAfter
           Previous
         </button>
 
-        {
-          ArrayOfPages.length <= 8 ? (
-            ArrayOfPages.map((page, index) => (
+        {ArrayOfPages.length <= 8 ? (
+          ArrayOfPages.map((page, index) => (
+            <button
+              className={Page === page ? "pagination-button-focus" : "pagination-button"}
+              key={index}
+              onClick={() => {
+                SetOffSet(page * selectedItemByPage);
+                SetPage(page);
+              }}>
+              {page + 1}
+            </button>
+          ))
+        ) : Page <= 4 ? (
+          <div>
+            {ArrayOfPages.slice(0, 5).map((page, index) => (
               <button
                 className={Page === page ? "pagination-button-focus" : "pagination-button"}
                 key={index}
@@ -96,119 +108,80 @@ const Pagination = ({ selectedItemByPage, Userlist, setItemShowed, userListAfter
                 }}>
                 {page + 1}
               </button>
-            ))
-          ) : Page <= 4 ? (
-            <div>
-              {ArrayOfPages.slice(0, 5).map((page, index) => (
-                <button
-                  className={Page === page ? "pagination-button-focus" : "pagination-button"}
-                  key={index}
-                  onClick={() => {
-                    SetOffSet(page * selectedItemByPage);
-                    SetPage(page);
-                  }}>
-                  {page + 1}
-                </button>
-              ))}
+            ))}
 
-              {"..."}
+            {"..."}
+            <button
+              className={
+                Page === ArrayOfPages[ArrayOfPages.length - 1] ? "pagination-button-focus" : "pagination-button"
+              }
+              onClick={() => {
+                SetOffSet([ArrayOfPages.length - 1] * selectedItemByPage);
+                SetPage([ArrayOfPages.length - 1]);
+              }}>
+              {[ArrayOfPages.length]}
+            </button>
+          </div>
+        ) : Page > 4 && Page <= ArrayOfPages.length - 4 ? (
+          <div>
+            <button
+              className={Page === ArrayOfPages[0] ? "pagination-button-focus" : "pagination-button"}
+              onClick={() => {
+                SetOffSet(ArrayOfPages[0] * selectedItemByPage);
+                SetPage(ArrayOfPages[0]);
+              }}>
+              {ArrayOfPages[0] + 1}
+            </button>
+            {"..."}
+            {ArrayOfPages.slice(Page - 1, Page + 2).map((page, index) => (
               <button
-                className={
-                  Page === ArrayOfPages[ArrayOfPages.length - 1] ? "pagination-button-focus" : "pagination-button"
-                }
+                className={Page === page ? "pagination-button-focus" : "pagination-button"}
+                key={index}
                 onClick={() => {
-                  SetOffSet([ArrayOfPages.length - 1] * selectedItemByPage);
-                  SetPage([ArrayOfPages.length - 1]);
+                  SetOffSet(page * selectedItemByPage);
+                  SetPage(page);
                 }}>
-                {[ArrayOfPages.length]}
+                {page + 1}
               </button>
-            </div>
-          ) : Page > 4 && Page <= ArrayOfPages.length - 4 ? (
-            <div>
+            ))}
+            {"..."}
+            <button
+              className={
+                Page === ArrayOfPages[ArrayOfPages.length - 1] ? "pagination-button-focus" : "pagination-button"
+              }
+              onClick={() => {
+                SetOffSet([ArrayOfPages.length - 1] * selectedItemByPage);
+                SetPage([ArrayOfPages.length - 1]);
+              }}>
+              {[ArrayOfPages.length]}
+            </button>
+          </div>
+        ) : Page > ArrayOfPages.length - 4 ? (
+          <div>
+            <button
+              className={Page === ArrayOfPages[0] ? "pagination-button-focus" : "pagination-button"}
+              onClick={() => {
+                SetOffSet(ArrayOfPages[0] * selectedItemByPage);
+                SetPage(ArrayOfPages[0]);
+              }}>
+              {ArrayOfPages[0] + 1}
+            </button>
+            {"..."}
+            {ArrayOfPages.slice(ArrayOfPages.length - 5, ArrayOfPages.length).map((page, index) => (
               <button
-                className={Page === ArrayOfPages[0] ? "pagination-button-focus" : "pagination-button"}
+                className={Page === page ? "pagination-button-focus" : "pagination-button"}
+                key={index}
                 onClick={() => {
-                  SetOffSet(ArrayOfPages[0] * selectedItemByPage);
-                  SetPage(ArrayOfPages[0]);
+                  SetOffSet(page * selectedItemByPage);
+                  SetPage(page);
                 }}>
-                {ArrayOfPages[0] + 1}
+                {page + 1}
               </button>
-              {"..."}
-              {ArrayOfPages.slice(Page - 1, Page + 2).map((page, index) => (
-                <button
-                  className={Page === page ? "pagination-button-focus" : "pagination-button"}
-                  key={index}
-                  onClick={() => {
-                    SetOffSet(page * selectedItemByPage);
-                    SetPage(page);
-                  }}>
-                  {page + 1}
-                </button>
-              ))}
-              {"..."}
-              <button
-                className={
-                  Page === ArrayOfPages[ArrayOfPages.length - 1] ? "pagination-button-focus" : "pagination-button"
-                }
-                onClick={() => {
-                  SetOffSet([ArrayOfPages.length - 1] * selectedItemByPage);
-                  SetPage([ArrayOfPages.length - 1]);
-                }}>
-                {[ArrayOfPages.length]}
-              </button>
-            </div>
-          ) : Page > ArrayOfPages.length - 4 ? (
-            <div>
-              <button
-                className={Page === ArrayOfPages[0] ? "pagination-button-focus" : "pagination-button"}
-                onClick={() => {
-                  SetOffSet(ArrayOfPages[0] * selectedItemByPage);
-                  SetPage(ArrayOfPages[0]);
-                }}>
-                {ArrayOfPages[0] + 1}
-              </button>
-              {"..."}
-              {ArrayOfPages.slice(ArrayOfPages.length - 5, ArrayOfPages.length).map((page, index) => (
-                <button
-                  className={Page === page ? "pagination-button-focus" : "pagination-button"}
-                  key={index}
-                  onClick={() => {
-                    SetOffSet(page * selectedItemByPage);
-                    SetPage(page);
-                  }}>
-                  {page + 1}
-                </button>
-              ))}
-            </div>
-          ) : (
-            " "
-          )
-          // <div>
-          //   {ArrayOfPages.slice(0, 5).map((page, index) => (
-          //     <button
-          //       className={Page === page ? "pagination-button-focus" : "pagination-button"}
-          //       key={index}
-          //       onClick={() => {
-          //         SetOffSet(page * selectedItemByPage);
-          //         SetPage(page);
-          //       }}>
-          //       {page + 1}
-          //     </button>
-          //   ))}
-
-          //   {"..."}
-          //   <button
-          //       className={
-          //         Page === ArrayOfPages[ArrayOfPages.length - 1] ? "pagination-button-focus" : "pagination-button"
-          //       }
-          //       onClick={() => {
-          //         SetOffSet([ArrayOfPages.length - 1] * selectedItemByPage);
-          //         SetPage([ArrayOfPages.length - 1]);
-          //       }}>
-          //       {[ArrayOfPages.length]}
-          //     </button>
-          // </div>
-        }
+            ))}
+          </div>
+        ) : (
+          " "
+        )}
 
         {/* 
         {ArrayOfPages.map((page, index) => (

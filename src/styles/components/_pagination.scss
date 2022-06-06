@@ -1,22 +1,68 @@
-.pagination-button {
-  font-family: "Times New Roman", Times, serif;
-  width: 42px;
-  height: 36px;
-  border: unset;
-  background: unset;
-  margin: 0 2px 0 2px;
-}
-.pagination-button:hover {
-  border: 1px solid $color-5;
-  border-radius: 2px;
-  background: linear-gradient($color-6, $color-5);
-  color: $color-3;
-}
-.pagination-button:focus {
-  border: 1px solid $color-10;
-  border-radius: 2px;
-  background: linear-gradient($color-3, $color-4);
-}
-.pagination-button:focus:hover {
-  color: $color-5;
+.pagination {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  .info {
+    align-self: center;
+  }
+  .button-container {
+    display: flex;
+    .prevnext-button {
+      height: 36px;
+      font-size: 16px;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      padding: 0px 16px 0px 16px;
+      border: 1px solid $color-3;
+      background: unset;
+      margin: 0 2px 0 2px;
+      cursor: pointer;
+    }
+    .prevnext-button-disabled {
+      height: 36px;
+      font-size: 16px;
+      color: $color-11;
+      font-family: "Times New Roman", Times, serif;
+      padding: 0px 16px 0px 16px;
+      border: 1px solid $color-3;
+      background: unset;
+      margin: 0 2px 0 2px;
+    }
+
+    .prevnext-button:hover {
+      border: 1px solid $color-5;
+      border-radius: 2px;
+      background: linear-gradient($color-6, $color-5);
+      color: $color-3;
+    }
+    .pagination-button {
+      font-size: 16px;
+      font-family: "Times New Roman", Times, serif;
+      width: 42px;
+      height: 36px;
+      border: unset;
+      background: unset;
+      margin: 0 2px 0 2px;
+      cursor: pointer;
+    }
+    .pagination-button:hover {
+      border: 1px solid $color-5;
+      border-radius: 2px;
+      background: linear-gradient($color-6, $color-5);
+      color: $color-3;
+    }
+    .pagination-button-focus {
+      font-size: 16px;
+      font-family: "Times New Roman", Times, serif;
+      width: 42px;
+      height: 36px;
+      border: 1px solid $color-3;
+      background: unset;
+      margin: 0 2px 0 2px;
+      border: 1px solid $color-10;
+      border-radius: 2px;
+      background: linear-gradient($color-3, $color-4);
+      cursor: pointer;
+    }
+  }
 }

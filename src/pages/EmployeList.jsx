@@ -10,7 +10,11 @@ const EmployeList = () => {
   const { UserList } = data;
   const [selectedItemByPage, setSelectedItemByPage] = useState(entries[0].name);
   const [ItemShowed, setItemShowed] = useState([]);
-  console.log(ItemShowed);
+  const [userListAfterSearch, setUserListAfterSearch] = useState([]);
+  // console.log(UserList);
+  // console.log(userListAfterSearch);
+  // console.log(ItemShowed);
+
   return (
     <div className="container">
       <h1>Current Employees</h1>
@@ -25,8 +29,18 @@ const EmployeList = () => {
           />
           <span>entries</span>
         </div>
-        <Table Userlist={UserList} ItemShowed={ItemShowed} />
-        <Pagination selectedItemByPage={selectedItemByPage} Userlist={UserList} setItemShowed={setItemShowed} />
+        <Table
+          Userlist={UserList}
+          ItemShowed={ItemShowed}
+          setUserListAfterSearch={setUserListAfterSearch}
+          userListAfterSearch={userListAfterSearch}
+        />
+        <Pagination
+          selectedItemByPage={selectedItemByPage}
+          Userlist={UserList}
+          userListAfterSearch={userListAfterSearch}
+          setItemShowed={setItemShowed}
+        />
       </div>
 
       <NavLink to={"/"}>Home</NavLink>

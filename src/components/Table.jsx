@@ -1,22 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Table = ({ Userlist, ItemShowed }) => {
+const Table = ({ Userlist, ItemShowed, setUserListAfterSearch, userListAfterSearch }) => {
   const [searchInput, SetSearchInput] = useState("");
   // console.log(Userlist);
   // console.log(ItemShowed);
 
-  let FilteredUserList = ItemShowed.filter(
-    (user) =>
-      user.firstName.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.lastName.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.dateOfBirth.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.startDate.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.department.name.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.street.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.city.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.state.abbreviation.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
-      user.zipCode.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
-  );
+  useEffect(() => {
+    let FilteredUserList = Userlist.filter(
+      (user) =>
+        user.firstName.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.lastName.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.dateOfBirth.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.startDate.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.department.name.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.street.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.city.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.state.abbreviation.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase()) ||
+        user.zipCode.toLocaleLowerCase().includes(searchInput.toLocaleLowerCase())
+    );
+    setUserListAfterSearch(FilteredUserList);
+  }, [Userlist, searchInput, setUserListAfterSearch]);
 
   return (
     <div className="component-container">
@@ -42,19 +45,19 @@ const Table = ({ Userlist, ItemShowed }) => {
             <th>State</th>
             <th>Zip Code</th>
           </tr>
-          {ItemShowed.length === 0 ? (
+          {Userlist.length === 0 ? (
             <tr className="column no-results column-pair">
               <td colSpan={9}>No data aviable in table</td>
             </tr>
           ) : (
             ""
           )}
-          {FilteredUserList.length === 0 && ItemShowed.length !== 0 ? (
+          {userListAfterSearch.length === 0 && Userlist.length !== 0 ? (
             <tr className="column no-results column-pair">
               <td colSpan={9}>No matching records found</td>
             </tr>
           ) : (
-            FilteredUserList.map((user, index) => (
+            ItemShowed.map((user, index) => (
               <tr className={index % 2 === 0 ? "column column-pair" : "column column-impair"} key={index}>
                 <td>{user.firstName}</td>
                 <td>{user.lastName}</td>
