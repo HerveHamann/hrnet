@@ -1,0 +1,30 @@
+.header-container {
+  display: flex;
+  height: 34px;
+  align-items: baseline;
+  padding: 0 5px 0 5px;
+  justify-content: space-around;
+
+  .arrow {
+    font-size: 22px;
+    position: relative;
+    top: 6px;
+    color: $color-11;
+    cursor: pointer;
+  }
+  .arrow:hover {
+    color: $color-5;
+  }
+  .house {
+    position: relative;
+    top: 1px;
+    font-size: 13px;
+    color: $color-11;
+    margin-right: 50px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  .house:hover {
+    color: $color-5;
+  }
+}

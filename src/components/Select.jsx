@@ -15,24 +15,27 @@ const Select = ({ classSet, title, type, setSelected, selectedItem }) => {
   document.addEventListener("mousedown", handleCLickOutside);
 
   const SaveSelection = (item) => {
-    setSelected(item.name);
+    setSelected(item.name || item);
   };
 
   return (
     <div>
-      <div className="select-title">{title}</div>
+      <div className={title ? "select-title" : ""}>{title}</div>
       <div
         ref={ref}
         className={classSet}
         onClick={() => (openDropDown ? setOpenDropDown(false) : setOpenDropDown(true))}>
         <div className="dropdown-select">
           <span className="select">{selectedItem} </span>
-          <FontAwesomeIcon className="icon" icon={classSet === "dropdown" ? faCaretDown : faChevronDown} />
+          <FontAwesomeIcon className="icon" icon={classSet === "table-dropdown" ? faChevronDown : faCaretDown} />
         </div>
         <div className={openDropDown ? "dropdown-list" : "hidden"}>
           {type.map((item) => (
-            <div className="dropdown-item" onClick={() => SaveSelection(item)} key={item.name}>
-              {item.name}
+            <div
+              className={selectedItem === (item.name || item) ? "dropdown-item-focus" : "dropdown-item"}
+              onClick={() => SaveSelection(item)}
+              key={item.name || item}>
+              {item.name || item}
             </div>
           ))}
         </div>

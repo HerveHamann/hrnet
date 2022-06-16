@@ -3,7 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  h1 {
+    padding-bottom: 26px;
+  }
   .custom-field {
     .entries-selector {
       margin: 0px 0 2px 0;

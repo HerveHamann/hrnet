@@ -4,12 +4,15 @@ import { NavLink } from "react-router-dom";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import { states, departement } from "../assets/SelectContent";
+import DatePicker from "../components/DatePicker";
 
 const Home = () => {
   const data = useContext(DataContext);
   const { UserList, setUserList } = data;
   const [selectedState, setSelectedState] = useState(states[0].name);
   const [selectedDepartment, setSelectedDepartment] = useState(departement[0].name);
+  const [selectedDateOfBirth, setSelectedDateOfBirth] = useState("");
+  const [selectedStartDate, setSelectedStartDate] = useState("");
   const [ModalShowed, setModalShowed] = useState(false);
 
   const [User, setUser] = useState({
@@ -23,9 +26,6 @@ const Home = () => {
     state: "",
     zipCode: "",
   });
-  // console.log(selectedState);
-  // console.log(selectedDepartment);
-  // console.log(User);
 
   useEffect(() => {
     if (User.state !== selectedState) {
@@ -34,7 +34,23 @@ const Home = () => {
     if (User.department !== selectedDepartment) {
       setUser((User) => ({ ...User, department: departement.find((item) => item.name === selectedDepartment) }));
     }
-  }, [User.state, User.department, selectedState, selectedDepartment]);
+    if (User.dateOfBirth !== selectedDateOfBirth) {
+      setUser((User) => ({ ...User, dateOfBirth: selectedDateOfBirth }));
+    }
+
+    if (User.startDate !== selectedStartDate) {
+      setUser((User) => ({ ...User, startDate: selectedStartDate }));
+    }
+  }, [
+    User.state,
+    User.department,
+    User.dateOfBirth,
+    User.startDate,
+    selectedState,
+    selectedDepartment,
+    selectedDateOfBirth,
+    selectedStartDate,
+  ]);
 
   const onClick = () => {
     setUserList(UserList.concat(User));
@@ -57,11 +73,8 @@ const Home = () => {
           <label hmtlfor="last-name">Last Name</label>
           <input onChange={(e) => setUser({ ...User, lastName: e.target.value })} type="text" id="last-name" />
 
-          <label hmtlfor="date-of-birth">Date of Birth</label>
-          <input onChange={(e) => setUser({ ...User, dateOfBirth: e.target.value })} id="date-of-birth" type="text" />
-
-          <label hmtlfor="start-date">Start Date</label>
-          <input onChange={(e) => setUser({ ...User, startDate: e.target.value })} id="start-date" type="text" />
+          <DatePicker title={"Date of Birth"} id={"date-of-birth"} setSelected={setSelectedDateOfBirth} />
+          <DatePicker title={"Start Date"} id={"start-date"} setSelected={setSelectedStartDate} />
 
           <fieldset className="address">
             <legend>Address</legend>

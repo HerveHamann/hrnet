@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 const Pagination = ({ selectedItemByPage, Userlist, setItemShowed, userListAfterSearch }) => {
-  // console.log(selectedItemByPage);
-
   let numberOfPages = Math.ceil(userListAfterSearch.length / selectedItemByPage);
-  // console.log(numberOfPages);
 
   let ArrayOfPages = [...Array(numberOfPages).keys()];
-  // console.log(ArrayOfPages);
 
   const [offSet, SetOffSet] = useState(0);
-
   const [Page, SetPage] = useState(0);
-  console.log(Page);
-  // console.log(userListAfterSearch);
-  console.log(offSet);
 
   useEffect(() => {
     if (userListAfterSearch.length !== Userlist.length) {
@@ -23,37 +15,12 @@ const Pagination = ({ selectedItemByPage, Userlist, setItemShowed, userListAfter
   }, [userListAfterSearch.length, Userlist.length]);
 
   useEffect(() => {
-    //On utilise Math.floor car : si par ex: 95/25
-    //On obtient 3,6: si on fait Math.ceil => 4 ça nous amène a la page d'après qui existe pas (si on est fin de tableau)
-    //On utilise donc Math.floor car 3.6 veut dire : l'élément est sur la page 3 et .6 veut dire à 60% de la page
-
     let positionOnPage = Math.floor(offSet / selectedItemByPage);
-
-    // console.log(selectedItemByPage);
-    let NewNumberOfPages = Math.ceil(userListAfterSearch.length / selectedItemByPage);
-    // console.log(NewNumberOfPages);
-    let NewArrayOfPages = [...Array(NewNumberOfPages).keys()];
-    // console.log(NewArrayOfPages);
-    let newPageSelected = NewArrayOfPages.find((page) => page === positionOnPage);
-    // console.log(newPageSelected);
-
     SetPage(positionOnPage);
     setItemShowed(
-      userListAfterSearch.slice(newPageSelected * selectedItemByPage, (newPageSelected + 1) * selectedItemByPage)
+      userListAfterSearch.slice(positionOnPage * selectedItemByPage, (positionOnPage + 1) * selectedItemByPage)
     );
-  }, [setItemShowed, selectedItemByPage, userListAfterSearch, offSet, Userlist.length]);
-
-  //version light qui semble marcher aussi!
-
-  // useEffect(() => {
-  //   let positionOnPage = Math.floor(offSet / selectedItemByPage);
-  //   console.log(positionOnPage);
-
-  //   SetPage(positionOnPage);
-  //   setItemShowed(
-  //     userListAfterSearch.slice(positionOnPage * selectedItemByPage, (positionOnPage + 1) * selectedItemByPage)
-  //   );
-  // }, [setItemShowed, selectedItemByPage, userListAfterSearch, offSet]);
+  }, [setItemShowed, selectedItemByPage, userListAfterSearch, offSet]);
 
   return (
     <div className="pagination">
@@ -183,20 +150,6 @@ const Pagination = ({ selectedItemByPage, Userlist, setItemShowed, userListAfter
           " "
         )}
 
-        {/* 
-        {ArrayOfPages.map((page, index) => (
-          <button
-            className={Page === page ? "pagination-button-focus" : "pagination-button"}
-            key={index}
-            onClick={() => {
-              SetOffSet(page * selectedItemByPage);
-              SetPage(page);
-              //A DEMANDER mais: vu que je change OffSet et Page, l'UseEffect se joue donc pas besoin de ligne en dessous?
-              // setItemShowed(userListAfterSearch.slice(page * selectedItemByPage, (page + 1) * selectedItemByPage));
-            }}>
-            {page + 1}
-          </button>
-        ))} */}
         <button
           className={Page === ArrayOfPages.length - 1 ? "prevnext-button-disabled" : "prevnext-button"}
           onClick={

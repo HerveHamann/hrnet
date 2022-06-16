@@ -11,9 +11,6 @@ const EmployeList = () => {
   const [selectedItemByPage, setSelectedItemByPage] = useState(entries[0].name);
   const [ItemShowed, setItemShowed] = useState([]);
   const [userListAfterSearch, setUserListAfterSearch] = useState([]);
-  // console.log(UserList);
-  // console.log(userListAfterSearch);
-  // console.log(ItemShowed);
 
   return (
     <div className="container">
