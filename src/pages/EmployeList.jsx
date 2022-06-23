@@ -5,6 +5,7 @@ import Table from "../components/Table";
 import Select from "../components/Select";
 import { entries } from "../assets/SelectContent";
 import Pagination from "../components/Pagination";
+
 const EmployeList = () => {
   const data = useContext(DataContext);
   const { UserList } = data;

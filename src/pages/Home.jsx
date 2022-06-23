@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import Select from "../components/Select";
 import Modal from "../components/Modal";
 import { states, departement } from "../assets/SelectContent";
-import DatePicker from "../components/DatePicker";
+// import DatePicker from "../components/DatePicker";
 
+import DatePicker from "datepicker-component-student-final/dist/DatePicker";
 const Home = () => {
   const data = useContext(DataContext);
   const { UserList, setUserList } = data;
